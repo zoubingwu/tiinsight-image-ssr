@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --unstable-kv main.tsx",
+    "watch": "deno run --allow-net --unstable-kv --unstable-hmr main.tsx"
+  },
+  "imports": {
+    "hono/": "https://deno.land/x/hono@v3.12.9/",
+    "std/": "https://deno.land/std@0.200.0/",
+    "twind": "https://esm.sh/twind@0.16.19",
+    "twind/": "https://esm.sh/twind@0.16.19/"
+  },
+  "compilerOptions": {
+    "strict": true,
+    "lib": [
+      "deno.window",
+      "deno.unstable",
+      "dom"
+    ]
+  }
+}
