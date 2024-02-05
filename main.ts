@@ -24,6 +24,10 @@ import { match, P } from "./deps.ts";
 await load({ export: true });
 
 const db = await Deno.openKv();
+// const rows = db.list({ prefix: [] });
+// for await (const row of rows) {
+//   db.delete(row.key);
+// }
 const t = new TiInsightSDK();
 const app = new Hono();
 
@@ -87,6 +91,7 @@ app.get("/test_chart", async (c) => {
   }
 
   const entry = await db.get(["question", question!]);
+  console.log("entry: ", entry);
 
   return await match(entry)
     .with({ value: null, versionstamp: null }, async () => {
@@ -108,7 +113,7 @@ app.get("/test_chart", async (c) => {
       }
 
       if (isQuestionBreakdown(resolved.result)) {
-        const res = await t.followupSubtask("0", resolved.result.question_id);
+        const res = await t.followupSubtask(resolved.result.question_id, "0");
         await db.set(["question", question!], res.result);
         return svgResponse(withSvgText("Generating"));
       }
