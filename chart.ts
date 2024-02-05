@@ -43,12 +43,12 @@ export interface ChartConfiguration<
 > {
   /** The width, in pixels, of the chart.
    *
-   * Defaults to `768`.
+   * Defaults to `600`.
    */
   width?: number;
   /** The height, in pixels, of the chart.
    *
-   * Defaults to `384`.
+   * Defaults to `400`.
    */
   height?: number;
   /** The type of chart.
@@ -83,8 +83,8 @@ export function chart<
   TLabel = unknown,
 >(
   {
-    width = 768,
-    height = 384,
+    width = 600,
+    height = 400,
     type = "bar",
     data,
     options = {},
@@ -157,4 +157,21 @@ export enum ChartColors {
 export function transparentize(value: string, opacity?: number) {
   const alpha = opacity === undefined ? 0.5 : 1 - opacity;
   return colors(value).alpha(alpha).rgbString();
+}
+
+export function withSvgText(text: string): string {
+  return [
+    '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 300 200" fill="none">',
+    '<rect width="100%" height="100%" fill="gainsboro" />',
+    `<text x="150" y="50" fill="gray" text-anchor="middle" alignment-baseline="middle">${text}</text>`,
+    "</svg>",
+  ].join("");
+}
+
+export function svgResponse(svg: string) {
+  return new Response(svg, {
+    headers: {
+      "content-type": "image/svg+xml",
+    },
+  });
 }

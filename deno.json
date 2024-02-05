@@ -1,13 +1,13 @@
 {
   "tasks": {
-    "start": "deno run --allow-net --unstable-kv main.tsx",
-    "watch": "deno run --allow-net --unstable-kv --unstable-hmr main.tsx"
+    "start": "deno run --allow-net --allow-read --allow-env --unstable-kv main.ts",
+    "watch": "deno run --allow-net --allow-read --allow-env --unstable-kv --unstable-hmr main.ts"
   },
   "imports": {
+    "digest_fetch": "https://deno.land/x/digest_fetch@v1.2.1/mod.ts",
     "hono/": "https://deno.land/x/hono@v3.12.9/",
-    "std/": "https://deno.land/std@0.200.0/",
-    "twind": "https://esm.sh/twind@0.16.19",
-    "twind/": "https://esm.sh/twind@0.16.19/"
+    "std/": "https://deno.land/std@0.214.0/",
+    "zod": "https://deno.land/x/zod@v3.22.4/mod.ts"
   },
   "compilerOptions": {
     "strict": true,

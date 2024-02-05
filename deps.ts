@@ -5,3 +5,4 @@ export {
   SvgCanvas,
   SvgCanvas2DGradient,
 } from "https://esm.sh/stable/red-agate-svg-canvas@0.5.0";
+export { isMatching, match, P } from "https://esm.sh/stable/ts-pattern@5.0.6";
