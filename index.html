@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TiInsight Image SSR</title>
+    <title>TiInsight Chart SSR</title>
   </head>
   <body>
     <p>This is a demo for server side rendering chart based on TiInsight API.</p>
@@ -156,12 +156,10 @@
 
     <script>
       var input = document.querySelector("#input");
-      console.log("input: ", input);
       var link = document.querySelector("#link");
 
       input.addEventListener("input", (e) => {
         var url = `/test_chart?q=${encodeURIComponent(e.target.value)}`;
-        console.log("url: ", url);
         link.setAttribute("href", url);
         link.textContent = url;
       });
