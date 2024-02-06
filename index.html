@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TiInsight Image SSR</title>
+  </head>
+  <body>
+    <p>This is a demo for server side rendering chart based on TiInsight API.</p>
+
+    <p>Write you question and visit this link below, refresh that page for latest result.</p>
+
+    <textarea id="input"></textarea>
+
+    <a href="/" id="link" target="_blank">click here to view chart</a>
+
+    <p>You can ask questions like</p>
+    <ul>
+      <li>
+        <a href="http://localhost:8000/test_chart?q=what%20is%20the%20top%2010%20albums%20sold" target="_blank">What is the top 10 albums sold</a>
+      </li>
+    </ul>
+
+    <details>
+      <summary>
+        This service is connected to a database about music library, it has tables like albums, artists, etc. Click on me to expand to see detailed entites and tables information.
+      </summary>
+
+      <table cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Summary</th>
+            <th>Related Tables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>albums</td>
+            <td>
+              This table is a collection of music albums, where each album is uniquely identified and linked to its
+              respective artist. It provides a way to track the title of each album and the artist who created it.
+            </td>
+            <td>
+              <div><div>albums</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>artists</td>
+            <td>
+              This table is a comprehensive list of artists, where each artist is uniquely identified by an ID and their
+              name is also recorded.
+            </td>
+            <td>
+              <div><div>artists</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>customers</td>
+            <td>
+              This table is a comprehensive record of customers, capturing their personal and contact details, along with
+              the identifier of their assigned support representative. It helps in maintaining and managing customer data,
+              and can be used for customer service, marketing, and sales purposes.
+            </td>
+            <td>
+              <div><div>customers</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>employees</td>
+            <td>
+              This table is a record of all employees in a company. It includes their personal and contact details, job
+              title, the person they report to, and their hiring details. It provides a complete profile of an employee
+              from their name and address to their role in the company.
+            </td>
+            <td>
+              <div><div>employees</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>genres</td>
+            <td>
+              This table is used to store information about various music genres. Each genre is uniquely identified by an
+              ID and has a corresponding name.
+            </td>
+            <td>
+              <div><div>genres</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>invoice_lines</td>
+            <td>
+              This table is a detailed record of all purchases made in each invoice. Each row represents a unique line
+              item in an invoice, detailing the specific product purchased, its unit price, and the quantity purchased. It
+              allows for tracking of individual product sales and revenue generation.
+            </td>
+            <td>
+              <div><div>invoice_lines</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>invoices</td>
+            <td>
+              This table is a record of all invoices generated for customers. It includes details about when and where the
+              invoice was sent, as well as the total amount billed.
+            </td>
+            <td>
+              <div><div>invoices</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>media_types</td>
+            <td>
+              This table is a catalog of various media types, with each entry providing a unique identifier and a detailed
+              name that describes the format and protection status of the media file.
+            </td>
+            <td>
+              <div><div>media_types</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>playlist_tracks</td>
+            <td>
+              This table is used to keep track of which songs are included in each playlist in the music application. It
+              helps in understanding the composition of each playlist by mapping each playlist to its corresponding
+              tracks.
+            </td>
+            <td>
+              <div><div>playlist_tracks</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>playlists</td>
+            <td>
+              This table is a collection of playlists, each with a unique identifier and a name. The name of the playlist
+              could be related to various forms of entertainment such as music, movies, or TV shows.
+            </td>
+            <td>
+              <div><div>playlists</div></div>
+            </td>
+          </tr>
+          <tr>
+            <td>tracks</td>
+            <td>
+              This table is a comprehensive repository of tracks, providing a detailed overview of each track's title, its
+              associated album, the type of media it is, its genre, the composer, the duration of the track in
+              milliseconds, the size of the track file in bytes, and the price of the track.
+            </td>
+            <td>
+              <div><div>tracks</div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <script>
+      var input = document.querySelector("#input");
+      console.log("input: ", input);
+      var link = document.querySelector("#link");
+
+      input.addEventListener("input", (e) => {
+        var url = `/test_chart?q=${encodeURIComponent(e.target.value)}`;
+        console.log("url: ", url);
+        link.setAttribute("href", url);
+        link.textContent = url;
+      });
+    </script>
+  </body>
+</html>

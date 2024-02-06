@@ -33,7 +33,11 @@ const app = new Hono();
 
 app.use("*", logger());
 
-app.get("/", (c) => c.text("Hello Deno!"));
+app.get("/", async (c) => {
+  const decoder = new TextDecoder("utf-8");
+  const data = await Deno.readFile("./index.html");
+  return c.html(decoder.decode(data));
+});
 
 app.get("/example.svg", () => {
   const svg = chart({
